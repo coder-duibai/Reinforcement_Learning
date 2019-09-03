@@ -64,9 +64,10 @@ class GridEnv(gym.Env):
     #定义reset()函数
     def reset(self):
         self.state=self.states[int(random.random()*len(self.states))]
+        print("hello world")
         return self.state
 
-    #定义step():扮演物理引擎的角色，物理引擎模拟环境中物体的运动规律
+    #定义step():扮演物理引擎的角色，物理引模拟环境中物体的运动规律
     def step(self,action):
         #系统当前状态
         state=self.state
@@ -171,7 +172,7 @@ class GridEnv(gym.Env):
             return None
         #设置机器人圆心坐标
         self.robotrans.set_translation(self.x[self.state-1],self.y[self.state-1])
-        return self.viewer.render(return_rgb_array=mode=='rgb_array')
+        return self.viewer.render('rgb_array')
 
 
             
