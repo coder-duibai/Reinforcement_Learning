@@ -16,9 +16,9 @@ class GridEnv(gym.Env):
         self.y=[250,250,250,250,250,150,150,150]
         #终止状态
         self.terminate_states=dict()
-        self.terminate_states['6']=1
-        self.terminate_states['7']=1
-        self.terminate_states['8']=1
+        self.terminate_states[6]=1
+        self.terminate_states[7]=1
+        self.terminate_states[8]=1
         #状态空间
         self.states=[1,2,3,4,5,6,7,8]
         #动作空间
@@ -171,7 +171,7 @@ class GridEnv(gym.Env):
             return None
         #设置机器人圆心坐标
         self.robotrans.set_translation(self.x[self.state-1],self.y[self.state-1])
-        return self.viewer.render('rgb_array')
+        return self.viewer.render(return_rgb_array=mode=='rgb_array')
 
 
             
