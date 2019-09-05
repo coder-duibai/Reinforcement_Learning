@@ -9,6 +9,7 @@ class GridEnv(gym.Env):
     metadata={
         'render.modes':['human','rgb_array'],
         'video.frames_per_second':2
+
     }
     def __init__(self):
         #机器人初始化状态
@@ -50,6 +51,18 @@ class GridEnv(gym.Env):
         self.state=None
         #在类对象内部访问实例属性
         #获取终止状态
+    #返回下一步状态、立即回报和状态转移概率
+    def transform(self,state,action):
+        #遍历动作空间，所以状态有可能不存在，设不存在的状态为-1
+        s=-1
+        r=0
+        key='%i_%s'%(state,action)
+        if key in self.rewards:
+            r=self.rewards[key]
+        if key in self.t:
+            s=self.t[key]
+        return self.t,s,r
+            
     def getTerminal(self):
         return self.terminate_states
     #获取状态空间
